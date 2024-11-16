@@ -1,0 +1,53 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: HackathonCrowdfunding
+    network: sepolia
+    source:
+      address: "0xf26D6CbfDa8b187c54a021DB71E3d9f73844C7AE"
+      abi: HackathonCrowdfunding
+      startBlock: 7091782
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BookingRequestSent
+        - BookingResponseReceived
+        - FundsWithdrawn
+        - HackerRegistered
+        - OwnershipTransferRequested
+        - OwnershipTransferred
+        - PrizeDeposited
+        - RequestFulfilled
+        - RequestSent
+        - SponsorFunded
+      abis:
+        - name: HackathonCrowdfunding
+          file: ./abis/HackathonCrowdfunding.json
+      eventHandlers:
+        - event: BookingRequestSent(indexed bytes32)
+          handler: handleBookingRequestSent
+        - event: BookingResponseReceived(indexed bytes32,bool)
+          handler: handleBookingResponseReceived
+        - event: FundsWithdrawn(indexed address,indexed address,uint256)
+          handler: handleFundsWithdrawn
+        - event: HackerRegistered(indexed address,string,string,string,string,uint256,uint256,uint256,uint256,bool)
+          handler: handleHackerRegistered
+        - event: OwnershipTransferRequested(indexed address,indexed address)
+          handler: handleOwnershipTransferRequested
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: PrizeDeposited(indexed address,uint256)
+          handler: handlePrizeDeposited
+        - event: RequestFulfilled(indexed bytes32)
+          handler: handleRequestFulfilled
+        - event: RequestSent(indexed bytes32)
+          handler: handleRequestSent
+        - event: SponsorFunded(indexed address,indexed address,uint256)
+          handler: handleSponsorFunded
+      file: ./src/hackathon-crowdfunding.ts

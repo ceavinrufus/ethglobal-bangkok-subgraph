@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "HackathonCrowdfunding": {
+      "address": "0xf26D6CbfDa8b187c54a021DB71E3d9f73844C7AE",
+      "startBlock": 7091782
+    }
+  }
+}
