@@ -25,7 +25,7 @@ type FundsWithdrawn @entity(immutable: true) {
   transactionHash: Bytes!
 }
 
-type HackerRegistered @entity(immutable: true) {
+type HackerRegistered @entity(immutable: false) {
   id: Bytes!
   hacker: Bytes! # address
   name: String! # string
